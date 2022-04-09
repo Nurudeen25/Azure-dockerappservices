@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://newmodefive.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_755c6f25bc134bf3ae66499a92014227 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_49977c322dbe485d8dde8c0e9d447183 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_7e062c55fddc446ba832710bd53e4de8 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_99aa652d1f0747c8abd227387526a587 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: newmodefive.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_755c6f25bc134bf3ae66499a92014227 }}/hshar/webapp:${{ github.sha }}
+        tags: newmodefive.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7e062c55fddc446ba832710bd53e4de8 }}/hello-world:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'module5app'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_46320fc327404602b140e8b8fbc6f3a4 }}
-        images: 'newmodefive.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_755c6f25bc134bf3ae66499a92014227 }}/hshar/webapp:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_01af363684f6489cb4f6596354287bf3 }}
+        images: 'newmodefive.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7e062c55fddc446ba832710bd53e4de8 }}/hello-world:${{ github.sha }}'
